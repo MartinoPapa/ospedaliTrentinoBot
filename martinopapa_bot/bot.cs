@@ -17,7 +17,7 @@ namespace martinopapa_bot
             var handler = new HttpClientHandler();
             handler.DefaultProxyCredentials = CredentialCache.DefaultNetworkCredentials;
             var httpClient = new HttpClient(handler);
-            this.client = new TelegramBotClient("962709189:AAEvpnHTlDZmxa-dN6T0Ihcxb_BeGT9nkjk", httpClient); //token per connettersi al proprio bot
+            this.client = new TelegramBotClient("*secret key*", httpClient); //token per connettersi al proprio bot
             this.client.OnMessage += Client_OnMessage;
             this.client.StartReceiving(); //long polling
         }
