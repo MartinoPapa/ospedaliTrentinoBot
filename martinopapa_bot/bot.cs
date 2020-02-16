@@ -17,7 +17,7 @@ namespace martinopapa_bot
             var handler = new HttpClientHandler();
             handler.DefaultProxyCredentials = CredentialCache.DefaultNetworkCredentials;
             var httpClient = new HttpClient(handler);
-            this.client = new TelegramBotClient("*secret key*", httpClient); //token per connettersi al proprio bot
+            this.client = new TelegramBotClient("962709189:AAEvpnHTlDZmxa-dN6T0Ihcxb_BeGT9nkjk", httpClient); //token per connettersi al proprio bot
             this.client.OnMessage += Client_OnMessage;
             this.client.StartReceiving(); //long polling
         }
@@ -27,6 +27,7 @@ namespace martinopapa_bot
             string input = e.Message.Text;
             if (input == "/start")
             {
+                Console.WriteLine("{0} ha avviato il bot", e.Message.Chat.FirstName);
                 StatoPS stato = new StatoPS();
                 IEnumerable<ProntoSoccorso> lista = await stato.Lista();
 
@@ -52,6 +53,7 @@ namespace martinopapa_bot
 
                 if(ps != null)
                 {
+                    Console.WriteLine("richiesta da {0}", e.Message.Chat.FirstName);
                     string text = $"{ps.nome}\n\n";
                     text += $"⚪ {ps.attesa.bianco} in attesa\n";
                     text += $"🟢 {ps.attesa.verde} in attesa\n";
